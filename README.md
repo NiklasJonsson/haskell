@@ -1,2 +1,2 @@
 # haskell
-Various projects for learning haskell
+Various projects for learning haskell.
