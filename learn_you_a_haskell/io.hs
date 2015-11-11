@@ -1,7 +1,8 @@
-import Data.Char
+import System.IO
 
 main = do
+	handle <- openFile "girlfriend.txt" ReadMode
+	contents <- hGetContents handle
+	putStr contents
+	hClose handle
 
-respondPalindromes :: String -> String
-respondPalindromes = unlines . map (\line -> if isPalindrome line then "Pali!" else "Not Pali!") . lines 
-	where isPalindrome = 
