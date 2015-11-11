@@ -1,6 +1,10 @@
-
-calculateRPN :: (Num a) => String -> a
-calculateRPN xs = foldr (\acc c -> handleChar c acc) [] . word xs
-
-
-handleChar
+calculateRPN :: (Num a, Read a) => String -> a
+calculateRPN = head . foldl foldFunc [] . words  
+	where 	foldFunc (x:y:ys) "*" = (x * y):ys
+		foldFunc (x:y:ys) "+" = (x + y):ys
+		foldFunc (x:y:ys) "-" = (y - x):ys
+		foldFunc (x:y:ys) "/" = (y / x):ys
+		foldFunc (x:y:ys) "^" = (y ** x):ys
+		foldFunc (x:xs) "ln" = log x:xs
+		foldFunc stack "sum" = [sum stack]
+		foldFunc stack word = (read word):stack
